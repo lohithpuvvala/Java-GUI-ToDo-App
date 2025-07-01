@@ -18,6 +18,7 @@ public class ToDoApp {
         frame = new JFrame("To-Do App");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400,600);
+        frame.setLayout(new BorderLayout());
 
         tasks = new ArrayList<>();
 
@@ -32,8 +33,15 @@ public class ToDoApp {
 
         taskListPanel = new JPanel();
         taskListPanel.setLayout(new BoxLayout(taskListPanel, BoxLayout.Y_AXIS));
+        taskListPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Added padding around task list
 
-        JScrollPane scrollPane = new JScrollPane(taskListPanel);
+        JPanel containerPanel = new JPanel(); // New container to constrain task list size
+        containerPanel.setLayout(new BorderLayout());
+        containerPanel.setPreferredSize(new Dimension(360, 480)); // Fixed size panel
+        containerPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY)); // Border around the task area
+        containerPanel.add(taskListPanel, BorderLayout.NORTH); // Embed the taskListPanel inside
+
+        JScrollPane scrollPane = new JScrollPane(containerPanel);
 
         frame.getContentPane().add(inputPanel, BorderLayout.NORTH);
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
