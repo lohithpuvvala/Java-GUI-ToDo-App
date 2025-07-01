@@ -48,13 +48,23 @@ public class ToDoApp {
                 }
             }
         });
+
+        frame.setVisible(true);
     }
 
     public void addTask(String taskDescription) {
-
+        Task task = new Task(taskDescription);
+        TaskPanel taskPanel = new TaskPanel(task, this);
+        tasks.add(taskPanel);
+        taskListPanel.add(taskPanel.getPanel());
+        taskListPanel.revalidate();
+        taskListPanel.repaint();
     }
 
     public void removeTask(TaskPanel taskPanel) {
-
+        tasks.remove(taskPanel);
+        taskListPanel.remove(taskPanel.getPanel());
+        taskListPanel.revalidate();
+        taskListPanel.repaint();
     }
 }
