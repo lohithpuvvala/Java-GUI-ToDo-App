@@ -47,7 +47,7 @@ public class ToDoApp {
                     taskInput.setText("");
                 }
             }
-        })
+        });
     }
 
     public void addTask(String taskDescription) {
